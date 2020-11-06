@@ -1,0 +1,157 @@
+<CreateAccountWindow>:
+    name: "create"
+    
+    user_name: user_name
+    user_pass: user_pass
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:            
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width * 0.03 + root.height * 0.03)
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8}
+                text: "User Name: "
+                font_size: (root.width * 0.02 + root.height * 0.02)
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: user_name
+                multiline: False
+                font_size: (root.width * 0.02 + root.height * 0.02)
+
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "Password: "
+                font_size: (root.width * 0.02 + root.height * 0.02)
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: user_pass
+                multiline: False
+                font_size: (root.width * 0.02 + root.height * 0.02)
+
+        Button:
+            pos_hint:{"x":0.22,"y":0.25}
+            size_hint: 0.6, 0.15
+            text: "Submit"
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+        Button:
+            pos_hint:{"x":0.32,"y":0.15}
+            size_hint: 0.4, 0.05            
+            font_size: (root.width * 0.01 + root.height * 0.01)
+            text: "Already have an Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+<LoginWindow>:
+    name: "login"
+
+    user_name: user_name
+    user_pass: user_pass
+
+    FloatLayout:
+
+        Label:
+            text: "Login Page"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: (root.width * 0.03 + root.height * 0.03)
+
+        Label:
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8}
+            text: "User Name: "
+            font_size: (root.width * 0.02 + root.height * 0.02)
+
+        TextInput:
+            id: user_name
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            multiline: False
+            pos_hint: {"x":0.5, "top":0.8}
+            size_hint: 0.4, 0.12
+
+        Label:
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8-0.13}
+            text: "Password: "
+            font_size: (root.width * 0.02 + root.height * 0.02)
+
+        TextInput:
+            id: user_pass
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            multiline: False
+            password: True
+            pos_hint: {"x":0.5, "top":0.8-0.13}
+            size_hint: 0.4, 0.12
+
+        Button:
+            pos_hint:{"x":0.22,"y":0.25}
+            size_hint: 0.6, 0.15
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.32,"y":0.15}
+            size_hint: 0.4, 0.05  
+            font_size: (root.width * 0.01 + root.height * 0.01)
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    keshvar: keshvar
+    soal: soal
+    
+
+    FloatLayout:
+        TextInput:
+            id: soal
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            multiline: False
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+
+        Button:
+            pos_hint:{"x": 0.1, "top":0.7}
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            size_hint:0.8, 0.2
+            text: "Search: "   
+            on_release:
+                root.serachBtn()
+
+        Label:
+            id: keshvar
+            pos_hint:{"x": 0.1, "top":0.5}
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            size_hint:0.8, 0.2
+            text: ""     
+
+        Button:
+            pos_hint:{"x":0.2, "y": 0.1}
+            font_size: (root.width * 0.02 + root.height * 0.02)
+            size_hint:0.6,0.2
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+                
